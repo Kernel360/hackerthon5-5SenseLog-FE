@@ -55,7 +55,7 @@ function LoginPage() {
             <div className="control">
               <input
                 className="input"
-                type="password"
+                P
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required

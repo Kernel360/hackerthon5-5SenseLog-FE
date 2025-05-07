@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 // 💡 테스트용 더미 데이터
 const mockDiary = {
@@ -12,11 +12,10 @@ const mockDiary = {
 
 function DiaryDetailPage() {
   const { id } = useParams();
+  const navigate = useNavigate();
 
-  // 💡 실제로는 fetch(`/api/diaries/${id}`)로 가져오게 됨
   const diary = mockDiary;
 
-  // 감정 태그 색상 설정
   const tagColor =
     diary.tag === "기쁨"
       ? "is-success"
@@ -25,6 +24,21 @@ function DiaryDetailPage() {
       : diary.tag === "우울" || diary.tag === "불안"
       ? "is-danger"
       : "is-info";
+
+  // 삭제 버튼 클릭 시
+  const handleDelete = () => {
+    const confirm = window.confirm("정말 이 일기를 삭제하시겠습니까?");
+    if (confirm) {
+      // 실제 API 연결: await fetch(`/api/diaries/${id}`, { method: "DELETE" })
+      alert("일기가 삭제되었습니다.");
+      navigate("/diary"); // 삭제 후 목록으로 이동
+    }
+  };
+
+  // 수정 버튼 클릭 시
+  const handleEdit = () => {
+    navigate(`/diary/edit/${id}`);
+  };
 
   return (
     <section className="section">
@@ -56,6 +70,17 @@ function DiaryDetailPage() {
             <p className="is-size-5 has-text-weight-semibold mt-2">
               "{diary.comfortMessage}"
             </p>
+          </div>
+
+          <hr />
+
+          <div className="buttons is-centered mt-4">
+            <button className="button is-warning" onClick={handleEdit}>
+              수정하기
+            </button>
+            <button className="button is-danger" onClick={handleDelete}>
+              삭제하기
+            </button>
           </div>
         </div>
       </div>

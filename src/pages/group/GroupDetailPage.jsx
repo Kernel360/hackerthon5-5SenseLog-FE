@@ -52,13 +52,50 @@ function GroupDetailPage() {
     }
   };
 
+  // 🔧 버튼 클릭 핸들러 (임시)
+  const handleLeaveGroup = () => {
+    alert("그룹을 나갔습니다. (API 연동 필요)");
+  };
+
+  const handleInviteMember = () => {
+    alert("초대 기능은 준비 중입니다. (모달 또는 링크)");
+  };
+
+  const handleViewMembers = () => {
+    alert("그룹원 목록: 예주, 우진 등 (API 필요)");
+  };
+
   return (
     <section className="section">
       <div className="container" style={{ maxWidth: "800px" }}>
         <h1 className="title">{mockGroup.name}</h1>
         <p className="subtitle is-6 has-text-grey">{mockGroup.description}</p>
+
+        {/* ✅ 그룹 기능 버튼들 */}
+        <div className="buttons mt-3 is-right">
+          <button
+            className="button is-danger is-light"
+            onClick={handleLeaveGroup}
+          >
+            그룹 나가기
+          </button>
+          <button
+            className="button is-link is-light"
+            onClick={handleInviteMember}
+          >
+            그룹원 초대
+          </button>
+          <button
+            className="button is-info is-light"
+            onClick={handleViewMembers}
+          >
+            그룹원 목록
+          </button>
+        </div>
+
         <hr />
 
+        {/* 그룹 일기 목록 */}
         {diaries.map((diary) => (
           <div className="box mb-5" key={diary.id}>
             <p className="has-text-weight-semibold">{diary.author}의 일기</p>

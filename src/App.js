@@ -5,12 +5,12 @@ import MyPage from "../src/pages/mypage/MyPage";
 import DiaryDetailPage from "./pages/diary/DiaryDetailPage";
 import GroupPage from "./pages/group/GroupPage";
 import GroupDetailPage from "./pages/group/GroupDetailPage";
-import Header from "./components/Header"; // 추가
+import Header from "./components/Header";
 
-// 헤더를 로그인 페이지에서는 숨기기 위한 래퍼
+// 로그인 페이지에서는 헤더 숨김
 function LayoutWithConditionalHeader({ children }) {
   const location = useLocation();
-  const hideHeader = location.pathname === "/"; // 로그인 페이지에서는 헤더 숨김
+  const hideHeader = location.pathname === "/";
 
   return (
     <>
